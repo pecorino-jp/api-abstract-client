@@ -8,6 +8,7 @@
 import { AuthClient } from './auth/authClient';
 
 import { AccountService } from './service/account';
+import { DepositTransactionService } from './service/transaction/deposit';
 import { PayTransactionService } from './service/transaction/pay';
 import * as transporters from './transporters';
 
@@ -30,6 +31,11 @@ export namespace service {
      */
     export class Account extends AccountService { }
     export namespace transaction {
+        /**
+         * 入金取引サービス
+         * @class
+         */
+        export class Deposit extends DepositTransactionService { }
         /**
          * 支払取引サービス
          * @class

@@ -12,18 +12,19 @@ export interface IStartParams {
     };
     price: number;
     notes: string;
+    toAccountId: string;
 }
 
 /**
- * 支払取引サービス
+ * 転送取引サービス
  */
-export class PayTransactionService extends Service {
+export class TransferTransactionService extends Service {
     /**
      * 取引を開始する
      */
     public async start(params: IStartParams): Promise<any> {
         return this.fetch({
-            uri: '/transactions/pay/start',
+            uri: '/transactions/transfer/start',
             method: 'POST',
             body: {
                 expires: params.expires,
@@ -34,7 +35,8 @@ export class PayTransactionService extends Service {
                     url: params.recipient.url
                 },
                 price: params.price,
-                notes: params.notes
+                notes: params.notes,
+                toAccountId: params.toAccountId
             },
             expectedStatusCodes: [OK]
         });
@@ -47,7 +49,7 @@ export class PayTransactionService extends Service {
         transactionId: string;
     }): Promise<void> {
         return this.fetch({
-            uri: `/transactions/pay/${params.transactionId}/confirm`,
+            uri: `/transactions/transfer/${params.transactionId}/confirm`,
             method: 'POST',
             expectedStatusCodes: [NO_CONTENT],
             body: {

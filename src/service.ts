@@ -6,7 +6,6 @@ import { DefaultTransporter, Transporter } from './transporters';
 /**
  * service constructor options
  * @export
- * @interface
  */
 export interface IOptions {
     /**
@@ -40,7 +39,6 @@ export interface IFetchOptions {
 /**
  * base service class
  * @export
- * @class Service
  */
 export class Service {
     public options: IOptions;

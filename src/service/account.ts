@@ -3,17 +3,15 @@ import { OK } from 'http-status';
 import { Service } from '../service';
 
 /**
- * パフォーマンス検索結果インターフェース
+ * 転送アクション検索条件インターフェース
  * @export
- * @interface
  */
-export interface ISearchTradeActionsConditions {
-    acconutId: string;
+export interface ISearchTransferActionsConditions {
+    accountId: string;
 }
 
 /**
  * 口座サービス
- * @class
  */
 export class AccountService extends Service {
     /**
@@ -34,14 +32,14 @@ export class AccountService extends Service {
     /**
      * 取引履歴検索
      */
-    public async searchTradeActions(
+    public async searchTransferActions(
         /**
          * 検索条件
          */
-        params: ISearchTradeActionsConditions
+        params: ISearchTransferActionsConditions
     ): Promise<any[]> {
         return this.fetch({
-            uri: `/accounts/${params.acconutId}/actions/trade`,
+            uri: `/accounts/${params.accountId}/actions/moneyTransfer`,
             method: 'GET',
             qs: {
             },

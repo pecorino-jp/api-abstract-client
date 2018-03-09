@@ -1,4 +1,4 @@
-import { CREATED, OK } from 'http-status';
+import { NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../../service';
 
@@ -23,7 +23,6 @@ export interface IStartParams {
 
 /**
  * 入金取引サービス
- * @class
  */
 export class DepositTransactionService extends Service {
     /**
@@ -57,15 +56,14 @@ export class DepositTransactionService extends Service {
 
     /**
      * 取引確定
-     * @returns {any} 取引結果
      */
     public async confirm(params: {
         transactionId: string;
-    }): Promise<any> {
+    }): Promise<void> {
         return this.fetch({
             uri: `/transactions/deposit/${params.transactionId}/confirm`,
             method: 'POST',
-            expectedStatusCodes: [CREATED],
+            expectedStatusCodes: [NO_CONTENT],
             body: {
             }
         });

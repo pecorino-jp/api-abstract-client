@@ -1,3 +1,4 @@
+import * as factory from '@motionpicture/pecorino-factory';
 import { NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../../service';
@@ -28,7 +29,7 @@ export class DepositTransactionService extends Service {
     /**
      * 取引を開始する
      */
-    public async start(params: IStartParams): Promise<any> {
+    public async start(params: IStartParams): Promise<factory.transaction.deposit.ITransaction> {
         return this.fetch({
             uri: '/transactions/deposit/start',
             method: 'POST',
@@ -64,8 +65,7 @@ export class DepositTransactionService extends Service {
             uri: `/transactions/deposit/${params.transactionId}/confirm`,
             method: 'POST',
             expectedStatusCodes: [NO_CONTENT],
-            body: {
-            }
+            body: {}
         });
     }
 }

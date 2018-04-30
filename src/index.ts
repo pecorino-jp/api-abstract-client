@@ -2,32 +2,31 @@
 
 /**
  * PECORINO API Service Library for Javascript
- * @ignore
  */
+import * as factory from '@motionpicture/pecorino-factory';
 
 import { AuthClient } from './auth/authClient';
 
-import { AccountService } from './service/account';
 import { DepositTransactionService } from './service/transaction/deposit';
 import { PayTransactionService } from './service/transaction/pay';
 import { TransferTransactionService } from './service/transaction/transfer';
+import { UserService } from './service/user';
 import * as transporters from './transporters';
 
-// export import factory = factory;
+export import factory = factory;
 export import transporters = transporters;
 
 /**
  * auth client abstract class
  * 認証クライアント抽象クラス
- * @export
  */
 export abstract class Auth extends AuthClient { }
 
 export namespace service {
     /**
-     * 口座サービス
+     * ユーザーサービス
      */
-    export class Account extends AccountService { }
+    export class User extends UserService { }
     export namespace transaction {
         /**
          * 入金取引サービス

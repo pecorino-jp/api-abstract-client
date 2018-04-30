@@ -1,3 +1,4 @@
+import * as factory from '@motionpicture/pecorino-factory';
 import { NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../../service';
@@ -12,6 +13,7 @@ export interface IStartParams {
     };
     price: number;
     notes: string;
+    fromAccountId: string;
     toAccountId: string;
 }
 
@@ -22,7 +24,7 @@ export class TransferTransactionService extends Service {
     /**
      * 取引を開始する
      */
-    public async start(params: IStartParams): Promise<any> {
+    public async start(params: IStartParams): Promise<factory.transaction.transfer.ITransaction> {
         return this.fetch({
             uri: '/transactions/transfer/start',
             method: 'POST',
@@ -36,6 +38,7 @@ export class TransferTransactionService extends Service {
                 },
                 price: params.price,
                 notes: params.notes,
+                fromAccountId: params.fromAccountId,
                 toAccountId: params.toAccountId
             },
             expectedStatusCodes: [OK]
@@ -52,8 +55,7 @@ export class TransferTransactionService extends Service {
             uri: `/transactions/transfer/${params.transactionId}/confirm`,
             method: 'POST',
             expectedStatusCodes: [NO_CONTENT],
-            body: {
-            }
+            body: {}
         });
     }
 }

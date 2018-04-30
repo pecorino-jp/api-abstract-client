@@ -1,5 +1,5 @@
 import * as factory from '@motionpicture/pecorino-factory';
-import { OK } from 'http-status';
+import { CREATED, OK } from 'http-status';
 
 import { Service } from '../service';
 
@@ -25,7 +25,7 @@ export class UserService extends Service {
             uri: '/me/accounts',
             method: 'POST',
             body: params,
-            expectedStatusCodes: [OK]
+            expectedStatusCodes: [CREATED]
         });
     }
 

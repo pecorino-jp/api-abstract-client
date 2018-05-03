@@ -58,4 +58,18 @@ export class TransferTransactionService extends Service {
             body: {}
         });
     }
+
+    /**
+     * 取引中止
+     */
+    public async cancel(params: {
+        transactionId: string;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/transactions/transfer/${params.transactionId}/cancel`,
+            method: 'POST',
+            expectedStatusCodes: [NO_CONTENT],
+            body: {}
+        });
+    }
 }

@@ -68,4 +68,18 @@ export class DepositTransactionService extends Service {
             body: {}
         });
     }
+
+    /**
+     * 取引中止
+     */
+    public async cancel(params: {
+        transactionId: string;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/transactions/deposit/${params.transactionId}/cancel`,
+            method: 'POST',
+            expectedStatusCodes: [NO_CONTENT],
+            body: {}
+        });
+    }
 }

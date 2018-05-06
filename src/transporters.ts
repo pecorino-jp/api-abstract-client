@@ -31,6 +31,12 @@ export type IBodyResponseCallback = Promise<any>;
 export class RequestError extends Error {
     public code: number;
     public errors: Error[];
+
+    constructor(message?: string) {
+        super(message);
+
+        this.name = 'PecorinoRequestError';
+    }
 }
 
 /**

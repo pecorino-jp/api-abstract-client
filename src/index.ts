@@ -7,10 +7,10 @@ import * as factory from '@motionpicture/pecorino-factory';
 
 import { AuthClient } from './auth/authClient';
 
+import { AccountService } from './service/account';
 import { DepositTransactionService } from './service/transaction/deposit';
 import { PayTransactionService } from './service/transaction/pay';
 import { TransferTransactionService } from './service/transaction/transfer';
-import { UserService } from './service/user';
 import * as transporters from './transporters';
 
 export import factory = factory;
@@ -24,9 +24,9 @@ export abstract class Auth extends AuthClient { }
 
 export namespace service {
     /**
-     * ユーザーサービス
+     * 口座サービス
      */
-    export class User extends UserService { }
+    export class Account extends AccountService { }
     export namespace transaction {
         /**
          * 入金取引サービス

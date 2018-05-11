@@ -5,6 +5,9 @@ import { Service } from '../../service';
 
 export interface IStartParams {
     expires: Date;
+    agent: {
+        name: string;
+    };
     recipient: {
         typeOf: string;
         id: string;
@@ -30,6 +33,9 @@ export class TransferTransactionService extends Service {
             method: 'POST',
             body: {
                 expires: params.expires,
+                agent: {
+                    name: params.agent.name
+                },
                 recipient: {
                     typeOf: params.recipient.typeOf,
                     id: params.recipient.id,

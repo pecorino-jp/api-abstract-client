@@ -11,18 +11,18 @@ export interface ISearchTransferActionsConditions {
 }
 
 /**
- * ユーザーサービス
+ * 口座サービス
  */
-export class UserService extends Service {
+export class AccountService extends Service {
     /**
-     * 自分の口座を開設する
+     * 口座を開設する
      */
-    public async openAccount(params: {
+    public async open(params: {
         name: string;
         initialBalance?: number;
     }): Promise<factory.account.IAccount> {
         return this.fetch({
-            uri: '/me/accounts',
+            uri: '/accounts',
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
@@ -30,13 +30,17 @@ export class UserService extends Service {
     }
 
     /**
-     * 自分の口座を検索する
+     * 口座を検索する
      */
-    public async findAccounts(__: {}): Promise<factory.account.IAccount[]> {
+    public async search(params: {
+        accountIds: string[];
+    }): Promise<factory.account.IAccount[]> {
         return this.fetch({
-            uri: '/me/accounts',
+            uri: '/accounts',
             method: 'GET',
-            qs: {},
+            qs: {
+                accountIds: params.accountIds
+            },
             expectedStatusCodes: [OK]
         });
     }
@@ -51,7 +55,7 @@ export class UserService extends Service {
         params: ISearchTransferActionsConditions
     ): Promise<factory.action.transfer.moneyTransfer.IAction[]> {
         return this.fetch({
-            uri: `/me/accounts/${params.accountId}/actions/moneyTransfer`,
+            uri: `/accounts/${params.accountId}/actions/moneyTransfer`,
             method: 'GET',
             qs: {},
             expectedStatusCodes: [OK]

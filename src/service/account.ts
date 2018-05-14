@@ -10,6 +10,16 @@ export interface ISearchTransferActionsConditions {
     accountId: string;
 }
 
+export interface ISearchAccountsConditions {
+    ids: string[];
+    statuses: factory.accountStatusType[];
+    /**
+     * 口座名義
+     */
+    name?: string;
+    limit: number;
+}
+
 /**
  * 口座サービス
  */
@@ -32,15 +42,11 @@ export class AccountService extends Service {
     /**
      * 口座を検索する
      */
-    public async search(params: {
-        accountIds: string[];
-    }): Promise<factory.account.IAccount[]> {
+    public async search(params: ISearchAccountsConditions): Promise<factory.account.IAccount[]> {
         return this.fetch({
             uri: '/accounts',
             method: 'GET',
-            qs: {
-                accountIds: params.accountIds
-            },
+            qs: params,
             expectedStatusCodes: [OK]
         });
     }

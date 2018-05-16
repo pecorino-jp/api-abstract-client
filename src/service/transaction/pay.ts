@@ -14,9 +14,9 @@ export interface IStartParams {
         name: string;
         url: string;
     };
-    price: number;
+    amount: number;
     notes: string;
-    fromAccountId: string;
+    fromAccountNumber: string;
 }
 
 /**
@@ -41,9 +41,9 @@ export class PayTransactionService extends Service {
                     name: params.recipient.name,
                     url: params.recipient.url
                 },
-                price: params.price,
+                amount: params.amount,
                 notes: params.notes,
-                fromAccountId: params.fromAccountId
+                fromAccountNumber: params.fromAccountNumber
             },
             expectedStatusCodes: [OK]
         });

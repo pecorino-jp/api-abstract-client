@@ -4,7 +4,7 @@ import { NO_CONTENT, OK } from 'http-status';
 import { Service } from '../../service';
 
 export interface IStartParams {
-    toAccountId: string;
+    toAccountNumber: string;
     expires: Date;
     agent: {
         typeOf: string;
@@ -18,7 +18,7 @@ export interface IStartParams {
         name: string;
         url: string;
     };
-    price: number;
+    amount: number;
     notes: string;
 }
 
@@ -34,7 +34,7 @@ export class DepositTransactionService extends Service {
             uri: '/transactions/deposit/start',
             method: 'POST',
             body: {
-                toAccountId: params.toAccountId,
+                toAccountNumber: params.toAccountNumber,
                 expires: params.expires,
                 agent: {
                     typeOf: params.agent.typeOf,
@@ -48,7 +48,7 @@ export class DepositTransactionService extends Service {
                     name: params.recipient.name,
                     url: params.recipient.url
                 },
-                price: params.price,
+                amount: params.amount,
                 notes: params.notes
             },
             expectedStatusCodes: [OK]

@@ -9,8 +9,8 @@ export interface ISearchActionsConditions<T extends factory.actionType> {
     startDateFrom?: Date;
     startDateThrough?: Date;
     purposeTypeOfs?: factory.transactionType[];
-    fromLocationIds?: string[];
-    toLocationIds?: string[];
+    fromLocationAccountNumbers?: string[];
+    toLocationAccountNumbers?: string[];
     limit: number;
 }
 

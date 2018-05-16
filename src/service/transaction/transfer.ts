@@ -14,10 +14,10 @@ export interface IStartParams {
         name: string;
         url: string;
     };
-    price: number;
+    amount: number;
     notes: string;
-    fromAccountId: string;
-    toAccountId: string;
+    fromAccountNumber: string;
+    toAccountNumber: string;
 }
 
 /**
@@ -42,10 +42,10 @@ export class TransferTransactionService extends Service {
                     name: params.recipient.name,
                     url: params.recipient.url
                 },
-                price: params.price,
+                amount: params.amount,
                 notes: params.notes,
-                fromAccountId: params.fromAccountId,
-                toAccountId: params.toAccountId
+                fromAccountNumber: params.fromAccountNumber,
+                toAccountNumber: params.toAccountNumber
             },
             expectedStatusCodes: [OK]
         });

@@ -10,7 +10,7 @@ const transactions = new pecorinoapi.service.transaction.Deposit({
 });
 
 transactions.start({
-    toAccountId: 'account',
+    toAccountNumber: 'account',
     expires: new Date(),
     agent: {
         typeOf: '',
@@ -24,7 +24,7 @@ transactions.start({
         name: '',
         url: ''
     },
-    price: 100,
+    amount: 100,
     notes: ''
 }).then((result) => {
     console.log(result);

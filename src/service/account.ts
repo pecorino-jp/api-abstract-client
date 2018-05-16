@@ -7,11 +7,11 @@ import { Service } from '../service';
  * 転送アクション検索条件インターフェース
  */
 export interface ISearchTransferActionsConditions {
-    accountId: string;
+    accountNumber: string;
 }
 
 export interface ISearchAccountsConditions {
-    ids: string[];
+    accountNumbers: string[];
     statuses: factory.accountStatusType[];
     /**
      * 口座名義
@@ -61,7 +61,7 @@ export class AccountService extends Service {
         params: ISearchTransferActionsConditions
     ): Promise<factory.action.transfer.moneyTransfer.IAction[]> {
         return this.fetch({
-            uri: `/accounts/${params.accountId}/actions/moneyTransfer`,
+            uri: `/accounts/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',
             qs: {},
             expectedStatusCodes: [OK]

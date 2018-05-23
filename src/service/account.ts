@@ -1,5 +1,5 @@
 import * as factory from '@motionpicture/pecorino-factory';
-import { CREATED, OK } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../service';
 
@@ -28,14 +28,32 @@ export class AccountService extends Service {
      * 口座を開設する
      */
     public async open(params: {
+        /**
+         * 口座名義
+         */
         name: string;
-        initialBalance?: number;
     }): Promise<factory.account.IAccount> {
         return this.fetch({
             uri: '/accounts',
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
+        });
+    }
+
+    /**
+     * 口座を解約する
+     */
+    public async close(params: {
+        /**
+         * 口座番号
+         */
+        accountNumber: string;
+    }): Promise<void> {
+        return this.fetch({
+            uri: `/accounts/${params.accountNumber}/close`,
+            method: 'PUT',
+            expectedStatusCodes: [NO_CONTENT]
         });
     }
 

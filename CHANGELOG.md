@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 - 入金取引サービスを追加。
 - 口座検索メソッドを追加。
 - アクション検索メソッドを追加。
+- 口座解約サービスを追加。
 
 ### Changed
 

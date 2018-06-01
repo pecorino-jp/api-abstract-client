@@ -59,7 +59,7 @@ export class TransferTransactionService extends Service {
     }): Promise<void> {
         return this.fetch({
             uri: `/transactions/transfer/${params.transactionId}/confirm`,
-            method: 'POST',
+            method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}
         });
@@ -73,7 +73,7 @@ export class TransferTransactionService extends Service {
     }): Promise<void> {
         return this.fetch({
             uri: `/transactions/transfer/${params.transactionId}/cancel`,
-            method: 'POST',
+            method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}
         });

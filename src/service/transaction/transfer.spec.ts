@@ -12,7 +12,7 @@ import * as sinon from 'sinon';
 
 // const API_ENDPOINT = 'https://localhost';
 
-describe('支払取引サービス', () => {
+describe('出金取引サービス', () => {
     let sandbox: sinon.SinonSandbox;
     // let transactions: pecorinoapi.service.transaction.Transfer;
 

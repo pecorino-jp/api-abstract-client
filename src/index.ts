@@ -10,8 +10,8 @@ import { AuthClient } from './auth/authClient';
 import { AccountService } from './service/account';
 import { ActionService } from './service/action';
 import { DepositTransactionService } from './service/transaction/deposit';
-import { PayTransactionService } from './service/transaction/pay';
 import { TransferTransactionService } from './service/transaction/transfer';
+import { WithdrawTransactionService } from './service/transaction/withdraw';
 import * as transporters from './transporters';
 
 export import factory = factory;
@@ -38,9 +38,9 @@ export namespace service {
          */
         export class Deposit extends DepositTransactionService { }
         /**
-         * 支払取引サービス
+         * 出金取引サービス
          */
-        export class Pay extends PayTransactionService { }
+        export class Withdraw extends WithdrawTransactionService { }
         /**
          * 転送取引サービス
          */

@@ -20,15 +20,15 @@ export interface IStartParams {
 }
 
 /**
- * 支払取引サービス
+ * 出金取引サービス
  */
-export class PayTransactionService extends Service {
+export class WithdrawTransactionService extends Service {
     /**
      * 取引を開始する
      */
-    public async start(params: IStartParams): Promise<factory.transaction.pay.ITransaction> {
+    public async start(params: IStartParams): Promise<factory.transaction.withdraw.ITransaction> {
         return this.fetch({
-            uri: '/transactions/pay/start',
+            uri: '/transactions/withdraw/start',
             method: 'POST',
             body: {
                 expires: params.expires,
@@ -56,7 +56,7 @@ export class PayTransactionService extends Service {
         transactionId: string;
     }): Promise<void> {
         return this.fetch({
-            uri: `/transactions/pay/${params.transactionId}/confirm`,
+            uri: `/transactions/withdraw/${params.transactionId}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}
@@ -70,7 +70,7 @@ export class PayTransactionService extends Service {
         transactionId: string;
     }): Promise<void> {
         return this.fetch({
-            uri: `/transactions/pay/${params.transactionId}/cancel`,
+            uri: `/transactions/withdraw/${params.transactionId}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
             body: {}

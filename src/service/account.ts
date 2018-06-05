@@ -29,6 +29,12 @@ export class AccountService extends Service {
      */
     public async open(params: {
         /**
+         * 口座番号
+         * Pecorinoサービス内(ひとつのPecorinoAPIエンドポイント)でユニークとなるように指定側で管理すること
+         * 重複すればステータスコード409が返されます。
+         */
+        accountNumber: string;
+        /**
          * 口座名義
          */
         name: string;

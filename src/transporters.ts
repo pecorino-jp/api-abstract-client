@@ -33,7 +33,8 @@ export class RequestError extends Error {
     public errors: Error[];
 
     constructor(message?: string) {
-        super(message);
+        // tslint:disable-next-line:no-single-line-block-comment
+        super(message)/* istanbul ignore next */;
 
         this.name = 'PecorinoRequestError';
     }

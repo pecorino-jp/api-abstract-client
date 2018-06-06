@@ -12,7 +12,6 @@
 ## Table of contents
 
 * [Usage](#usage)
-* [Jsdoc](#jsdoc)
 * [License](#license)
 
 ## Usage
@@ -26,10 +25,6 @@ npm install @motionpicture/pecorino-api-abstract-client
 | Name    | Required | Value                          | Purpose |
 |---------|----------|--------------------------------|---------|
 | `DEBUG` | false    | pecorino-api-abstract-client:* | Debug   |
-
-## Jsdoc
-
-`npm run doc` outputs docs to ./docs.
 
 ## License
 

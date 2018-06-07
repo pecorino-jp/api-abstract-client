@@ -6,18 +6,8 @@ import { Service } from '../../service';
 export interface IStartParams {
     toAccountNumber: string;
     expires: Date;
-    agent: {
-        typeOf: string;
-        id: string;
-        name: string;
-        url: string;
-    };
-    recipient: {
-        typeOf: string;
-        id: string;
-        name: string;
-        url: string;
-    };
+    agent: factory.transaction.deposit.IAgent;
+    recipient: factory.transaction.deposit.IRecipient;
     amount: number;
     notes: string;
 }

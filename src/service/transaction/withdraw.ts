@@ -25,15 +25,8 @@ export class WithdrawTransactionService extends Service {
             method: 'POST',
             body: {
                 expires: params.expires,
-                agent: {
-                    name: params.agent.name
-                },
-                recipient: {
-                    typeOf: params.recipient.typeOf,
-                    id: params.recipient.id,
-                    name: params.recipient.name,
-                    url: params.recipient.url
-                },
+                agent: params.agent,
+                recipient: params.recipient,
                 amount: params.amount,
                 notes: params.notes,
                 fromAccountNumber: params.fromAccountNumber

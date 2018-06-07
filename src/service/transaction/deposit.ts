@@ -26,18 +26,8 @@ export class DepositTransactionService extends Service {
             body: {
                 toAccountNumber: params.toAccountNumber,
                 expires: params.expires,
-                agent: {
-                    typeOf: params.agent.typeOf,
-                    id: params.agent.id,
-                    name: params.agent.name,
-                    url: params.agent.url
-                },
-                recipient: {
-                    typeOf: params.recipient.typeOf,
-                    id: params.recipient.id,
-                    name: params.recipient.name,
-                    url: params.recipient.url
-                },
+                agent: params.agent,
+                recipient: params.recipient,
                 amount: params.amount,
                 notes: params.notes
             },

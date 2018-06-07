@@ -5,15 +5,8 @@ import { Service } from '../../service';
 
 export interface IStartParams {
     expires: Date;
-    agent: {
-        name: string;
-    };
-    recipient: {
-        typeOf: string;
-        id: string;
-        name: string;
-        url: string;
-    };
+    agent: factory.transaction.withdraw.IAgent;
+    recipient: factory.transaction.withdraw.IRecipient;
     amount: number;
     notes: string;
     fromAccountNumber: string;

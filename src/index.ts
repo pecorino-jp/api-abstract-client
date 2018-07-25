@@ -1,9 +1,8 @@
 // tslint:disable:max-classes-per-file
-
 /**
- * PECORINO API Service Library for Javascript
+ * API Service Library for Javascript
  */
-import * as factory from '@motionpicture/pecorino-factory';
+import * as factory from '@pecorino/factory';
 
 import { AuthClient } from './auth/authClient';
 

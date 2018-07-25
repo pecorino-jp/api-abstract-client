@@ -1,4 +1,4 @@
-import * as factory from '@motionpicture/pecorino-factory';
+import * as factory from '@pecorino/factory';
 import { OK } from 'http-status';
 
 import { Service } from '../service';

@@ -1,13 +1,11 @@
-<img src="https://motionpicture.jp/images/common/logo_01.svg" alt="motionpicture" title="motionpicture" align="right" height="56" width="98"/>
+# Pecorino API abstract client library for Javascript
 
-# PECORINO API abstract client library for Javascript
-
-[![npm (scoped)](https://img.shields.io/npm/v/@motionpicture/pecorino-api-abstract-client.svg)](https://www.npmjs.com/package/@motionpicture/pecorino-api-abstract-client)
-[![CircleCI](https://circleci.com/gh/motionpicture/pecorino-api-abstract-client.svg?style=shield)](https://circleci.com/gh/motionpicture/pecorino-api-abstract-client)
-[![Coverage Status](https://coveralls.io/repos/github/motionpicture/pecorino-api-abstract-client/badge.svg?branch=master)](https://coveralls.io/github/motionpicture/pecorino-api-abstract-client?branch=master)
-[![Dependency Status](https://img.shields.io/david/motionpicture/pecorino-api-abstract-client.svg)](https://david-dm.org/motionpicture/pecorino-api-abstract-client)
-[![Known Vulnerabilities](https://snyk.io/test/github/motionpicture/pecorino-api-abstract-client/badge.svg)](https://snyk.io/test/github/motionpicture/pecorino-api-abstract-client)
-[![npm](https://img.shields.io/npm/dm/@motionpicture/pecorino-api-abstract-client.svg)](https://nodei.co/npm/@motionpicture/pecorino-api-abstract-client/)
+[![npm (scoped)](https://img.shields.io/npm/v/@pecorino/api-abstract-client.svg)](https://www.npmjs.com/package/@pecorino/api-abstract-client)
+[![CircleCI](https://circleci.com/gh/pecorino-jp/api-abstract-client.svg?style=svg)](https://circleci.com/gh/pecorino-jp/api-abstract-client)
+[![Coverage Status](https://coveralls.io/repos/github/pecorino-jp/api-abstract-client/badge.svg?branch=master)](https://coveralls.io/github/pecorino-jp/api-abstract-client?branch=master)
+[![Dependency Status](https://img.shields.io/david/pecorino-jp/api-abstract-client.svg)](https://david-dm.org/pecorino-jp/api-abstract-client)
+[![Known Vulnerabilities](https://snyk.io/test/github/pecorino-jp/api-abstract-client/badge.svg?targetFile=package.json)](https://snyk.io/test/github/pecorino-jp/api-abstract-client?targetFile=package.json)
+[![npm](https://img.shields.io/npm/dm/@pecorino/api-abstract-client.svg)](https://nodei.co/npm/@pecorino/api-abstract-client/)
 
 ## Table of contents
 
@@ -17,7 +15,7 @@
 ## Usage
 
 ```shell
-npm install @motionpicture/pecorino-api-abstract-client
+npm install @pecorino/api-abstract-client
 ```
 
 ### Environment variables

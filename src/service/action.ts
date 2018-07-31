@@ -15,7 +15,7 @@ export interface ISearchActionsConditions<T extends factory.actionType> {
 }
 
 export type IAction<T> =
-    T extends factory.actionType.MoneyTransfer ? factory.action.transfer.moneyTransfer.IAction :
+    T extends factory.actionType.MoneyTransfer ? factory.action.transfer.moneyTransfer.IAction<factory.account.AccountType> :
     factory.action.IAction<factory.action.IAttributes<any, any>>;
 
 /**

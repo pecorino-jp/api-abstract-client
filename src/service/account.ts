@@ -6,11 +6,22 @@ import { Service } from '../service';
 /**
  * 転送アクション検索条件インターフェース
  */
-export interface ISearchTransferActionsConditions {
+export interface ISearchTransferActionsConditions<T extends factory.account.AccountType> {
+    /**
+     * 口座タイプ
+     */
+    accountType: T;
+    /**
+     * 口座番号
+     */
     accountNumber: string;
 }
 
-export interface ISearchAccountsConditions {
+export interface ISearchAccountsConditions<T extends factory.account.AccountType> {
+    /**
+     * 口座タイプ
+     */
+    accountType: T;
     accountNumbers: string[];
     statuses: factory.accountStatusType[];
     /**
@@ -27,7 +38,11 @@ export class AccountService extends Service {
     /**
      * 口座を開設する
      */
-    public async open(params: {
+    public async open<T extends factory.account.AccountType>(params: {
+        /**
+         * 口座タイプ
+         */
+        accountType: T;
         /**
          * 口座番号
          * Pecorinoサービス内(ひとつのPecorinoAPIエンドポイント)でユニークとなるように指定側で管理すること
@@ -38,7 +53,7 @@ export class AccountService extends Service {
          * 口座名義
          */
         name: string;
-    }): Promise<factory.account.IAccount> {
+    }): Promise<factory.account.IAccount<T>> {
         return this.fetch({
             uri: '/accounts',
             method: 'POST',
@@ -50,14 +65,18 @@ export class AccountService extends Service {
     /**
      * 口座を解約する
      */
-    public async close(params: {
+    public async close<T extends factory.account.AccountType>(params: {
+        /**
+         * 口座タイプ
+         */
+        accountType: T;
         /**
          * 口座番号
          */
         accountNumber: string;
     }): Promise<void> {
         return this.fetch({
-            uri: `/accounts/${params.accountNumber}/close`,
+            uri: `/accounts/${params.accountType}/${params.accountNumber}/close`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });
@@ -66,7 +85,9 @@ export class AccountService extends Service {
     /**
      * 口座を検索する
      */
-    public async search(params: ISearchAccountsConditions): Promise<factory.account.IAccount[]> {
+    public async search<T extends factory.account.AccountType>(
+        params: ISearchAccountsConditions<T>
+    ): Promise<factory.account.IAccount<T>[]> {
         return this.fetch({
             uri: '/accounts',
             method: 'GET',
@@ -78,14 +99,14 @@ export class AccountService extends Service {
     /**
      * 口座の取引履歴を検索する
      */
-    public async searchMoneyTransferActions(
+    public async searchMoneyTransferActions<T extends factory.account.AccountType>(
         /**
          * 検索条件
          */
-        params: ISearchTransferActionsConditions
-    ): Promise<factory.action.transfer.moneyTransfer.IAction[]> {
+        params: ISearchTransferActionsConditions<T>
+    ): Promise<factory.action.transfer.moneyTransfer.IAction<T>[]> {
         return this.fetch({
-            uri: `/accounts/${params.accountNumber}/actions/moneyTransfer`,
+            uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',
             qs: {},
             expectedStatusCodes: [OK]

@@ -1,4 +1,4 @@
-# Pecorino API abstract client library for Javascript
+# Pecorino API Abstract Client Library for Javascript
 
 [![npm (scoped)](https://img.shields.io/npm/v/@pecorino/api-abstract-client.svg)](https://www.npmjs.com/package/@pecorino/api-abstract-client)
 [![CircleCI](https://circleci.com/gh/pecorino-jp/api-abstract-client.svg?style=svg)](https://circleci.com/gh/pecorino-jp/api-abstract-client)

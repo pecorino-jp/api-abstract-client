@@ -3,11 +3,12 @@ import { NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../../service';
 
-export interface IStartParams {
+export interface IStartParams<T extends factory.account.AccountType> {
     expires: Date;
     agent: factory.transaction.transfer.IAgent;
     recipient: factory.transaction.transfer.IRecipient;
     amount: number;
+    accountType: T;
     notes: string;
     fromAccountNumber: string;
     toAccountNumber: string;
@@ -20,7 +21,9 @@ export class TransferTransactionService extends Service {
     /**
      * 取引を開始する
      */
-    public async start(params: IStartParams): Promise<factory.transaction.transfer.ITransaction> {
+    public async start<T extends factory.account.AccountType>(
+        params: IStartParams<T>
+    ): Promise<factory.transaction.transfer.ITransaction<T>> {
         return this.fetch({
             uri: '/transactions/transfer/start',
             method: 'POST',
@@ -29,6 +32,7 @@ export class TransferTransactionService extends Service {
                 agent: params.agent,
                 recipient: params.recipient,
                 amount: params.amount,
+                accountType: params.accountType,
                 notes: params.notes,
                 fromAccountNumber: params.fromAccountNumber,
                 toAccountNumber: params.toAccountNumber

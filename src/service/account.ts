@@ -4,34 +4,6 @@ import { CREATED, NO_CONTENT, OK } from 'http-status';
 import { Service } from '../service';
 
 /**
- * 転送アクション検索条件インターフェース
- */
-export interface ISearchTransferActionsConditions<T extends factory.account.AccountType> {
-    /**
-     * 口座タイプ
-     */
-    accountType: T;
-    /**
-     * 口座番号
-     */
-    accountNumber: string;
-}
-
-export interface ISearchAccountsConditions<T extends factory.account.AccountType> {
-    /**
-     * 口座タイプ
-     */
-    accountType: T;
-    accountNumbers: string[];
-    statuses: factory.accountStatusType[];
-    /**
-     * 口座名義
-     */
-    name?: string;
-    limit: number;
-}
-
-/**
  * 口座サービス
  */
 export class AccountService extends Service {
@@ -61,7 +33,6 @@ export class AccountService extends Service {
             expectedStatusCodes: [CREATED]
         });
     }
-
     /**
      * 口座を解約する
      */
@@ -81,12 +52,11 @@ export class AccountService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
-
     /**
      * 口座を検索する
      */
     public async search<T extends factory.account.AccountType>(
-        params: ISearchAccountsConditions<T>
+        params: factory.account.ISearchConditions<T>
     ): Promise<factory.account.IAccount<T>[]> {
         return this.fetch({
             uri: '/accounts',
@@ -95,20 +65,16 @@ export class AccountService extends Service {
             expectedStatusCodes: [OK]
         });
     }
-
     /**
      * 口座の取引履歴を検索する
      */
     public async searchMoneyTransferActions<T extends factory.account.AccountType>(
-        /**
-         * 検索条件
-         */
-        params: ISearchTransferActionsConditions<T>
+        params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
     ): Promise<factory.action.transfer.moneyTransfer.IAction<T>[]> {
         return this.fetch({
             uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',
-            qs: {},
+            qs: params,
             expectedStatusCodes: [OK]
         });
     }

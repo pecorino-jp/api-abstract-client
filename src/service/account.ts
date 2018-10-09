@@ -1,7 +1,7 @@
 import * as factory from '@pecorino/factory';
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
-import { Service } from '../service';
+import { ISearchResult, Service } from '../service';
 
 /**
  * 口座サービス
@@ -31,7 +31,7 @@ export class AccountService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
-        });
+        }).then(async (response) => response.json());
     }
     /**
      * 口座を解約する
@@ -46,7 +46,7 @@ export class AccountService extends Service {
          */
         accountNumber: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/accounts/${params.accountType}/${params.accountNumber}/close`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
@@ -63,6 +63,24 @@ export class AccountService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
+    /**
+     * 口座を検索する
+     */
+    public async searchWithTotalCount<T extends factory.account.AccountType>(
+        params: factory.account.ISearchConditions<T>
+    ): Promise<ISearchResult<factory.account.IAccount<T>[]>> {
+        return this.fetch({
+            uri: '/accounts',
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
         });
     }
     /**
@@ -76,6 +94,24 @@ export class AccountService extends Service {
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
+        }).then(async (response) => response.json());
+    }
+    /**
+     * 口座の取引履歴を検索する
+     */
+    public async searchMoneyTransferActionsWithTotalCount<T extends factory.account.AccountType>(
+        params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
+    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction<T>[]>> {
+        return this.fetch({
+            uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
         });
     }
 }

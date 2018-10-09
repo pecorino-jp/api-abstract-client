@@ -36,7 +36,7 @@ export class WithdrawTransactionService extends Service {
                 fromAccountNumber: params.fromAccountNumber
             },
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
 
     /**
@@ -45,7 +45,7 @@ export class WithdrawTransactionService extends Service {
     public async confirm(params: {
         transactionId: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/transactions/withdraw/${params.transactionId}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
@@ -59,7 +59,7 @@ export class WithdrawTransactionService extends Service {
     public async cancel(params: {
         transactionId: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/transactions/withdraw/${params.transactionId}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],

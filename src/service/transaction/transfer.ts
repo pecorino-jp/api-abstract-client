@@ -38,7 +38,7 @@ export class TransferTransactionService extends Service {
                 toAccountNumber: params.toAccountNumber
             },
             expectedStatusCodes: [OK]
-        });
+        }).then(async (response) => response.json());
     }
 
     /**
@@ -47,7 +47,7 @@ export class TransferTransactionService extends Service {
     public async confirm(params: {
         transactionId: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/transactions/transfer/${params.transactionId}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],
@@ -61,7 +61,7 @@ export class TransferTransactionService extends Service {
     public async cancel(params: {
         transactionId: string;
     }): Promise<void> {
-        return this.fetch({
+        await this.fetch({
             uri: `/transactions/transfer/${params.transactionId}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT],

@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "check": "npm run tslint && nsp check",
+    "check": "npm run tslint",
     "clean": "rimraf ./lib \"npm-debug.log*\" ./docs ./.nyc_output",
     "doc": "echo \"implementing...\" && exit 0",
     "mocha": "mocha",
@@ -66,7 +66,6 @@
     "http-server": "^0.11.1",
     "mocha": "^5.2.0",
     "nock": "^9.6.1",
-    "nsp": "^3.2.1",
     "nyc": "^11.9.0",
     "open": "0.0.5",
     "power-assert": "^1.6.1",
@@ -79,7 +78,7 @@
     "typescript": "^3.1.1"
   },
   "dependencies": {
-    "@pecorino/factory": "^1.1.0",
+    "@pecorino/factory": "^2.0.0-alpha.0",
     "debug": "^3.2.5",
     "http-status": "^1.2.0",
     "isomorphic-fetch": "^2.2.1",

@@ -1,7 +1,6 @@
 // tslint:disable:no-implicit-dependencies
 /**
  * 転送取引サービステスト
- * @ignore
  */
 import { } from 'mocha';
 // import * as assert from 'power-assert';

@@ -2,40 +2,30 @@ import * as factory from '@pecorino/factory';
 import { NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../../service';
-
-export interface IStartParams<T extends factory.account.AccountType> {
-    expires: Date;
-    agent: factory.transaction.transfer.IAgent;
-    recipient: factory.transaction.transfer.IRecipient;
-    amount: number;
-    accountType: T;
-    notes: string;
-    fromAccountNumber: string;
-    toAccountNumber: string;
-}
+import { TransactionService } from '../transaction';
 
 /**
  * 転送取引サービス
  */
-export class TransferTransactionService extends Service {
+export class TransferTransactionService extends Service implements TransactionService {
+    public typeOf: factory.transactionType = factory.transactionType.Transfer;
+
     /**
      * 取引を開始する
      */
     public async start<T extends factory.account.AccountType>(
-        params: IStartParams<T>
+        params: factory.transaction.transfer.IStartParams<T>
     ): Promise<factory.transaction.transfer.ITransaction<T>> {
         return this.fetch({
-            uri: '/transactions/transfer/start',
+            uri: `/transactions/${this.typeOf}/start`,
             method: 'POST',
             body: {
-                expires: params.expires,
-                agent: params.agent,
-                recipient: params.recipient,
-                amount: params.amount,
-                accountType: params.accountType,
-                notes: params.notes,
-                fromAccountNumber: params.fromAccountNumber,
-                toAccountNumber: params.toAccountNumber
+                ...params,
+                amount: params.object.amount,
+                accountType: params.object.fromLocation.accountType,
+                notes: params.object.description,
+                fromAccountNumber: params.object.fromLocation.accountNumber,
+                toAccountNumber: params.object.toLocation.accountNumber
             },
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
@@ -45,13 +35,12 @@ export class TransferTransactionService extends Service {
      * 取引確定
      */
     public async confirm(params: {
-        transactionId: string;
+        id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/transfer/${params.transactionId}/confirm`,
+            uri: `/transactions/${this.typeOf}/${params.id}/confirm`,
             method: 'PUT',
-            expectedStatusCodes: [NO_CONTENT],
-            body: {}
+            expectedStatusCodes: [NO_CONTENT]
         });
     }
 
@@ -59,13 +48,12 @@ export class TransferTransactionService extends Service {
      * 取引中止
      */
     public async cancel(params: {
-        transactionId: string;
+        id: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/transfer/${params.transactionId}/cancel`,
+            uri: `/transactions/${this.typeOf}/${params.id}/cancel`,
             method: 'PUT',
-            expectedStatusCodes: [NO_CONTENT],
-            body: {}
+            expectedStatusCodes: [NO_CONTENT]
         });
     }
 }

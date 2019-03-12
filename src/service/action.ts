@@ -1,7 +1,7 @@
 import * as factory from '@pecorino/factory';
 import { OK } from 'http-status';
 
-import { Service } from '../service';
+import { ISearchResult, Service } from '../service';
 
 export interface ISearchActionsConditions<T extends factory.actionType> {
     typeOf: T;
@@ -32,5 +32,24 @@ export class ActionService extends Service {
             qs: params,
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
+    }
+
+    /**
+     * 転送アクションを検索する
+     */
+    public async searchMoneyTransferActions<T extends factory.account.AccountType>(
+        params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
+    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction<T>[]>> {
+        return this.fetch({
+            uri: `/actions/moneyTransfer`,
+            method: 'GET',
+            qs: params,
+            expectedStatusCodes: [OK]
+        }).then(async (response) => {
+            return {
+                totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                data: await response.json()
+            };
+        });
     }
 }

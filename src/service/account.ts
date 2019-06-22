@@ -33,6 +33,33 @@ export class AccountService extends Service {
             expectedStatusCodes: [CREATED]
         }).then(async (response) => response.json());
     }
+
+    /**
+     * 口座編集
+     * 名義変更などに使用
+     */
+    public async update<T extends factory.account.AccountType>(params: {
+        /**
+         * 口座タイプ
+         */
+        accountType: T;
+        /**
+         * 口座番号
+         */
+        accountNumber: string;
+        /**
+         * 口座名義
+         */
+        name?: string;
+    }): Promise<void> {
+        await this.fetch({
+            uri: `/accounts/${params.accountType}/${params.accountNumber}`,
+            method: 'PUT',
+            body: params,
+            expectedStatusCodes: [NO_CONTENT]
+        });
+    }
+
     /**
      * 口座を解約する
      */
@@ -52,6 +79,7 @@ export class AccountService extends Service {
             expectedStatusCodes: [NO_CONTENT]
         });
     }
+
     /**
      * 口座を検索する
      */
@@ -65,6 +93,7 @@ export class AccountService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 口座を検索する
      */
@@ -83,6 +112,7 @@ export class AccountService extends Service {
             };
         });
     }
+
     /**
      * 口座の取引履歴を検索する
      */
@@ -96,6 +126,7 @@ export class AccountService extends Service {
             expectedStatusCodes: [OK]
         }).then(async (response) => response.json());
     }
+
     /**
      * 口座の取引履歴を検索する
      */

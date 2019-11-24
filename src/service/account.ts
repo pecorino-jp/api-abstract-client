@@ -12,6 +12,13 @@ export class AccountService extends Service {
      */
     public async open<T extends factory.account.AccountType>(params: {
         /**
+         * プロジェクト
+         */
+        project: {
+            typeOf: 'Project';
+            id: string;
+        };
+        /**
          * 口座タイプ
          */
         accountType: T;

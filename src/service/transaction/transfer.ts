@@ -28,7 +28,8 @@ export class TransferTransactionService extends Service implements TransactionSe
                 toAccountNumber: params.object.toLocation.accountNumber
             },
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        })
+            .then(async (response) => response.json());
     }
 
     /**

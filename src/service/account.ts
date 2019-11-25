@@ -38,7 +38,8 @@ export class AccountService extends Service {
             method: 'POST',
             body: params,
             expectedStatusCodes: [CREATED]
-        }).then(async (response) => response.json());
+        })
+            .then(async (response) => response.json());
     }
 
     /**
@@ -92,32 +93,19 @@ export class AccountService extends Service {
      */
     public async search<T extends factory.account.AccountType>(
         params: factory.account.ISearchConditions<T>
-    ): Promise<factory.account.IAccount<T>[]> {
-        return this.fetch({
-            uri: '/accounts',
-            method: 'GET',
-            qs: params,
-            expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
-    }
-
-    /**
-     * 口座を検索する
-     */
-    public async searchWithTotalCount<T extends factory.account.AccountType>(
-        params: factory.account.ISearchConditions<T>
     ): Promise<ISearchResult<factory.account.IAccount<T>[]>> {
         return this.fetch({
             uri: '/accounts',
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => {
-            return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
-                data: await response.json()
-            };
-        });
+        })
+            .then(async (response) => {
+                return {
+                    totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                    data: await response.json()
+                };
+            });
     }
 
     /**
@@ -125,31 +113,18 @@ export class AccountService extends Service {
      */
     public async searchMoneyTransferActions<T extends factory.account.AccountType>(
         params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
-    ): Promise<factory.action.transfer.moneyTransfer.IAction<T>[]> {
-        return this.fetch({
-            uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
-            method: 'GET',
-            qs: params,
-            expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
-    }
-
-    /**
-     * 口座の取引履歴を検索する
-     */
-    public async searchMoneyTransferActionsWithTotalCount<T extends factory.account.AccountType>(
-        params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
     ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction<T>[]>> {
         return this.fetch({
             uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]
-        }).then(async (response) => {
-            return {
-                totalCount: Number(<string>response.headers.get('X-Total-Count')),
-                data: await response.json()
-            };
-        });
+        })
+            .then(async (response) => {
+                return {
+                    totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                    data: await response.json()
+                };
+            });
     }
 }

@@ -27,7 +27,8 @@ export class WithdrawTransactionService extends Service implements TransactionSe
                 fromAccountNumber: params.object.fromLocation.accountNumber
             },
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        })
+            .then(async (response) => response.json());
     }
 
     /**

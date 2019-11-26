@@ -27,7 +27,8 @@ export class DepositTransactionService extends Service implements TransactionSer
                 notes: params.object.description
             },
             expectedStatusCodes: [OK]
-        }).then(async (response) => response.json());
+        })
+            .then(async (response) => response.json());
     }
 
     /**

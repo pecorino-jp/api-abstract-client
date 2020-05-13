@@ -13,9 +13,9 @@ export class WithdrawTransactionService extends Service implements TransactionSe
     /**
      * 取引を開始する
      */
-    public async start<T extends factory.account.AccountType>(
-        params: factory.transaction.withdraw.IStartParams<T>
-    ): Promise<factory.transaction.withdraw.ITransaction<T>> {
+    public async start(
+        params: factory.transaction.withdraw.IStartParams
+    ): Promise<factory.transaction.withdraw.ITransaction> {
         return this.fetch({
             uri: `/transactions/${this.typeOf}/start`,
             method: 'POST',
@@ -35,10 +35,13 @@ export class WithdrawTransactionService extends Service implements TransactionSe
      * 取引確定
      */
     public async confirm(params: {
-        id: string;
+        id?: string;
+        transactionNumber?: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/${this.typeOf}/${params.id}/confirm`,
+            uri: (typeof params.transactionNumber === 'string')
+                ? `/transactions/${this.typeOf}/${params.transactionNumber}/confirm?transactionNumber=1`
+                : `/transactions/${this.typeOf}/${params.id}/confirm`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });
@@ -48,10 +51,13 @@ export class WithdrawTransactionService extends Service implements TransactionSe
      * 取引中止
      */
     public async cancel(params: {
-        id: string;
+        id?: string;
+        transactionNumber?: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/transactions/${this.typeOf}/${params.id}/cancel`,
+            uri: (typeof params.transactionNumber === 'string')
+                ? `/transactions/${this.typeOf}/${params.transactionNumber}/cancel?transactionNumber=1`
+                : `/transactions/${this.typeOf}/${params.id}/cancel`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });

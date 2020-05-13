@@ -10,7 +10,7 @@ export class AccountService extends Service {
     /**
      * 口座を開設する
      */
-    public async open<T extends factory.account.AccountType>(params: {
+    public async open(params: {
         /**
          * プロジェクト
          */
@@ -21,7 +21,7 @@ export class AccountService extends Service {
         /**
          * 口座タイプ
          */
-        accountType: T;
+        accountType: string;
         /**
          * 口座番号
          * Pecorinoサービス内(ひとつのPecorinoAPIエンドポイント)でユニークとなるように指定側で管理すること
@@ -32,7 +32,7 @@ export class AccountService extends Service {
          * 口座名義
          */
         name: string;
-    }): Promise<factory.account.IAccount<T>> {
+    }): Promise<factory.account.IAccount> {
         return this.fetch({
             uri: '/accounts',
             method: 'POST',
@@ -46,11 +46,11 @@ export class AccountService extends Service {
      * 口座編集
      * 名義変更などに使用
      */
-    public async update<T extends factory.account.AccountType>(params: {
+    public async update(params: {
         /**
          * 口座タイプ
          */
-        accountType: T;
+        accountType: string;
         /**
          * 口座番号
          */
@@ -71,11 +71,11 @@ export class AccountService extends Service {
     /**
      * 口座を解約する
      */
-    public async close<T extends factory.account.AccountType>(params: {
+    public async close(params: {
         /**
          * 口座タイプ
          */
-        accountType: T;
+        accountType: string;
         /**
          * 口座番号
          */
@@ -91,9 +91,9 @@ export class AccountService extends Service {
     /**
      * 口座を検索する
      */
-    public async search<T extends factory.account.AccountType>(
-        params: factory.account.ISearchConditions<T>
-    ): Promise<ISearchResult<factory.account.IAccount<T>[]>> {
+    public async search(
+        params: factory.account.ISearchConditions
+    ): Promise<ISearchResult<factory.account.IAccount[]>> {
         return this.fetch({
             uri: '/accounts',
             method: 'GET',
@@ -102,7 +102,9 @@ export class AccountService extends Service {
         })
             .then(async (response) => {
                 return {
-                    totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                    totalCount: (typeof response.headers.get('X-Total-Count') === 'string')
+                        ? Number(response.headers.get('X-Total-Count'))
+                        : undefined,
                     data: await response.json()
                 };
             });
@@ -111,9 +113,9 @@ export class AccountService extends Service {
     /**
      * 口座の取引履歴を検索する
      */
-    public async searchMoneyTransferActions<T extends factory.account.AccountType>(
-        params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
-    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction<T>[]>> {
+    public async searchMoneyTransferActions(
+        params: factory.action.transfer.moneyTransfer.ISearchConditions
+    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction[]>> {
         return this.fetch({
             uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',
@@ -122,7 +124,9 @@ export class AccountService extends Service {
         })
             .then(async (response) => {
                 return {
-                    totalCount: Number(<string>response.headers.get('X-Total-Count')),
+                    totalCount: (typeof response.headers.get('X-Total-Count') === 'string')
+                        ? Number(response.headers.get('X-Total-Count'))
+                        : undefined,
                     data: await response.json()
                 };
             });

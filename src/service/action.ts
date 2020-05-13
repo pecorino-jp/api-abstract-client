@@ -14,9 +14,9 @@ export class ActionService extends Service {
     /**
      * 転送アクションを検索する
      */
-    public async searchMoneyTransferActions<T extends factory.account.AccountType>(
-        params: factory.action.transfer.moneyTransfer.ISearchConditions<T>
-    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction<T>[]>> {
+    public async searchMoneyTransferActions(
+        params: factory.action.transfer.moneyTransfer.ISearchConditions
+    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction[]>> {
         return this.fetch({
             uri: `/actions/moneyTransfer`,
             method: 'GET',

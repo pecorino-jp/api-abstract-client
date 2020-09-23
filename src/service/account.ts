@@ -48,10 +48,6 @@ export class AccountService extends Service {
      */
     public async update(params: {
         /**
-         * 口座タイプ
-         */
-        accountType: string;
-        /**
          * 口座番号
          */
         accountNumber: string;
@@ -61,7 +57,7 @@ export class AccountService extends Service {
         name?: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/accounts/${params.accountType}/${params.accountNumber}`,
+            uri: `/accounts/Default/${params.accountNumber}`,
             method: 'PUT',
             body: params,
             expectedStatusCodes: [NO_CONTENT]
@@ -73,16 +69,12 @@ export class AccountService extends Service {
      */
     public async close(params: {
         /**
-         * 口座タイプ
-         */
-        accountType: string;
-        /**
          * 口座番号
          */
         accountNumber: string;
     }): Promise<void> {
         await this.fetch({
-            uri: `/accounts/${params.accountType}/${params.accountNumber}/close`,
+            uri: `/accounts/Default/${params.accountNumber}/close`,
             method: 'PUT',
             expectedStatusCodes: [NO_CONTENT]
         });

@@ -14,7 +14,7 @@ export class TransferTransactionService extends Service implements TransactionSe
      * 取引を開始する
      */
     public async start(
-        params: factory.transaction.transfer.IStartParams
+        params: factory.transaction.transfer.IStartParamsWithoutDetail
     ): Promise<factory.transaction.transfer.ITransaction> {
         return this.fetch({
             uri: `/transactions/${this.typeOf}/start`,
@@ -22,7 +22,6 @@ export class TransferTransactionService extends Service implements TransactionSe
             body: {
                 ...params,
                 amount: params.object.amount,
-                accountType: params.object.fromLocation.accountType,
                 notes: params.object.description,
                 fromAccountNumber: params.object.fromLocation.accountNumber,
                 toAccountNumber: params.object.toLocation.accountNumber

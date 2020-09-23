@@ -109,7 +109,7 @@ export class AccountService extends Service {
         params: factory.action.transfer.moneyTransfer.ISearchConditions
     ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction[]>> {
         return this.fetch({
-            uri: `/accounts/${params.accountType}/${params.accountNumber}/actions/moneyTransfer`,
+            uri: `/accounts/Default/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',
             qs: params,
             expectedStatusCodes: [OK]

@@ -3,10 +3,6 @@ import { OK } from 'http-status';
 
 import { ISearchResult, Service } from '../service';
 
-// export type IAction<T> =
-//     T extends factory.actionType.MoneyTransfer ? factory.action.transfer.moneyTransfer.IAction<factory.account.AccountType> :
-//     factory.action.IAction<factory.action.IAttributes<any, any>>;
-
 /**
  * アクションサービス
  */

@@ -14,7 +14,7 @@ export class WithdrawTransactionService extends Service implements TransactionSe
      * 取引を開始する
      */
     public async start(
-        params: factory.transaction.withdraw.IStartParams
+        params: factory.transaction.withdraw.IStartParamsWithoutDetail
     ): Promise<factory.transaction.withdraw.ITransaction> {
         return this.fetch({
             uri: `/transactions/${this.typeOf}/start`,
@@ -22,7 +22,6 @@ export class WithdrawTransactionService extends Service implements TransactionSe
             body: {
                 ...params,
                 amount: params.object.amount,
-                accountType: params.object.fromLocation.accountType,
                 notes: params.object.description,
                 fromAccountNumber: params.object.fromLocation.accountNumber
             },

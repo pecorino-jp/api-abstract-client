@@ -19,6 +19,10 @@ export class AccountService extends Service {
             id: string;
         };
         /**
+         * 口座種別
+         */
+        typeOf?: string;
+        /**
          * 口座タイプ
          */
         accountType: string;

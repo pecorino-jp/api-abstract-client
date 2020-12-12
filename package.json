@@ -80,7 +80,7 @@
     "@pecorino/factory": "4.10.0",
     "debug": "^3.2.5",
     "http-status": "^1.2.0",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "qs": "^6.5.2"
   }
 }

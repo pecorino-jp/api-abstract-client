@@ -1,4 +1,4 @@
-import * as factory from '@pecorino/factory';
+import * as factory from '@chevre/factory';
 import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import { ISearchResult, Service } from '../service';
@@ -109,8 +109,8 @@ export class AccountService extends Service {
      * 口座の取引履歴を検索する
      */
     public async searchMoneyTransferActions(
-        params: factory.action.transfer.moneyTransfer.ISearchConditions
-    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction[]>> {
+        params: factory.account.action.moneyTransfer.ISearchConditions
+    ): Promise<ISearchResult<factory.account.action.moneyTransfer.IAction[]>> {
         return this.fetch({
             uri: `/accounts/Default/${params.accountNumber}/actions/moneyTransfer`,
             method: 'GET',

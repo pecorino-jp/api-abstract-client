@@ -1,4 +1,4 @@
-import * as factory from '@pecorino/factory';
+import * as factory from '@chevre/factory';
 import { NO_CONTENT, OK } from 'http-status';
 
 import { Service } from '../../service';
@@ -8,14 +8,14 @@ import { TransactionService } from '../transaction';
  * 入金取引サービス
  */
 export class DepositTransactionService extends Service implements TransactionService {
-    public typeOf: factory.transactionType = factory.transactionType.Deposit;
+    public typeOf: factory.account.transactionType = factory.account.transactionType.Deposit;
 
     /**
      * 取引を開始する
      */
     public async start(
-        params: factory.transaction.deposit.IStartParamsWithoutDetail
-    ): Promise<factory.transaction.deposit.ITransaction> {
+        params: factory.account.transaction.deposit.IStartParamsWithoutDetail
+    ): Promise<factory.account.transaction.deposit.ITransaction> {
         return this.fetch({
             uri: `/transactions/${this.typeOf}/start`,
             method: 'POST',

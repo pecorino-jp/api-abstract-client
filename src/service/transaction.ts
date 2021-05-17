@@ -1,8 +1,8 @@
-import * as factory from '@pecorino/factory';
+import * as factory from '@chevre/factory';
 
 /**
  * 取引抽象サービス
  */
 export abstract class TransactionService {
-    public typeOf: factory.transactionType;
+    public typeOf: factory.account.transactionType;
 }

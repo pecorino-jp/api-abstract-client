@@ -1,4 +1,4 @@
-import * as factory from '@pecorino/factory';
+import * as factory from '@chevre/factory';
 import { OK } from 'http-status';
 
 import { ISearchResult, Service } from '../service';
@@ -11,8 +11,8 @@ export class ActionService extends Service {
      * 転送アクションを検索する
      */
     public async searchMoneyTransferActions(
-        params: factory.action.transfer.moneyTransfer.ISearchConditions
-    ): Promise<ISearchResult<factory.action.transfer.moneyTransfer.IAction[]>> {
+        params: factory.account.action.moneyTransfer.ISearchConditions
+    ): Promise<ISearchResult<factory.account.action.moneyTransfer.IAction[]>> {
         return this.fetch({
             uri: `/actions/moneyTransfer`,
             method: 'GET',

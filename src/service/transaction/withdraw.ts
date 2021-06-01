@@ -19,12 +19,7 @@ export class WithdrawTransactionService extends Service implements TransactionSe
         return this.fetch({
             uri: `/transactions/${this.typeOf}/start`,
             method: 'POST',
-            body: {
-                ...params,
-                amount: params.object.amount,
-                notes: params.object.description,
-                fromAccountNumber: params.object.fromLocation.accountNumber
-            },
+            body: params,
             expectedStatusCodes: [OK]
         })
             .then(async (response) => response.json());

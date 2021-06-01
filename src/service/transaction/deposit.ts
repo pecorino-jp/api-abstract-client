@@ -19,12 +19,7 @@ export class DepositTransactionService extends Service implements TransactionSer
         return this.fetch({
             uri: `/transactions/${this.typeOf}/start`,
             method: 'POST',
-            body: {
-                ...params,
-                amount: params.object.amount,
-                toAccountNumber: params.object.toLocation.accountNumber,
-                notes: params.object.description
-            },
+            body: params,
             expectedStatusCodes: [OK]
         })
             .then(async (response) => response.json());

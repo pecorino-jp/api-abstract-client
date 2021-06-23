@@ -1,6 +1,6 @@
 {
   "name": "@pecorino/api-abstract-client",
-  "version": "5.6.3",
+  "version": "5.6.4",
   "description": "Pecorino API Abstract Client Library for Javascript.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

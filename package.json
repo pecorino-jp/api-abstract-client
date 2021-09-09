@@ -28,7 +28,9 @@
     "preversion": "npm run clean && npm run build && npm test && npm run doc",
     "version": "git add -A",
     "postversion": "git push origin --tags",
-    "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc"
+    "prepublishOnly": "npm run clean && npm run build && npm test && npm run doc",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -83,6 +85,8 @@
     "debug": "^3.2.5",
     "http-status": "^1.2.0",
     "isomorphic-fetch": "^2.2.1",
-    "qs": "^6.5.2"
-  }
+    "qs": "^6.5.2",
+    "snyk": "^1.595.0"
+  },
+  "snyk": true
 }
